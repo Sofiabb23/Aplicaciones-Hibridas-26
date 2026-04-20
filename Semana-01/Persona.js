@@ -6,11 +6,11 @@ class Persona {
     constructor(nombre, apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
-        console.log ('Hola desde el constructor');
+        //console.log ('Hola desde el constructor');
     }
     // Métodos
     saludar() {
-        console.log(`Hola, mi nombre es ${this.nombre}`);
+        //console.log(`Hola, mi nombre es ${this.nombre}`);
     }
 }
 
