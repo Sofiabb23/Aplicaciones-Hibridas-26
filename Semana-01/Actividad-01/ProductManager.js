@@ -13,7 +13,7 @@ class ProductManager {
             return;
         }
 
-        // Validar ID único
+        // Validar ID 
         const exists = this.products.find(p => p.id === id);
         if (exists) {
             console.error("El producto con ese ID ya existe");
@@ -23,7 +23,7 @@ class ProductManager {
         this.products.push(product);
     }
 
-    // Obtener todos los productos
+    
     getProducts() {
         return this.products;
     }
@@ -41,5 +41,6 @@ class ProductManager {
     }
 }
 
-// 🔥 MUY IMPORTANTE: exportar la CLASE (no una instancia)
+
+
 export default ProductManager;
