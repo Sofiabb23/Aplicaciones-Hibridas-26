@@ -1,8 +1,5 @@
 import fs from 'fs/promises'
 
-
-
-
 class User {
     path = './data/users.json';
     list = []
@@ -10,16 +7,40 @@ class User {
 
     }
 
-    async save(user){
-        this.list.push(user);
-        const data = JSON.stringify(this.list)
-        await fs.writeFile(this.path, data)
+    async readJson(){
+        const data = await fs.readFile(this.path)
+        const json = JSON.parse(data);
+        this.users = json;
 
     }
+    
+    async save(user){
+        const id = crypto.randomUUID();
+        user.id = id;
+        this.list.push(user);
+        const data = JSON.stringify(this.list, null, 2);
+        await fs.writeFile(this.path, data);
+        console.log('Usuario Guardado');
+    }
 
-     get() {
+    async find(){
+        await this.readJson()
         return this.users
     }
+
+    async findById(id){
+        await this.readJson();
+        const user = this.users.find( u => u.id === id);
+        return user;
+    }
+
+
+    // async deleteById( id ){
+    //     await this.readJson();
+    // }
+    // async updateById( id, user){
+
+    // }
 
 }
 
