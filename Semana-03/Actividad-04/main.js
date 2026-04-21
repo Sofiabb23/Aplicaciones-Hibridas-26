@@ -6,14 +6,14 @@ const run = async () => {
 
     await manager.addProduct({
         name: "Teclado",
-        description: "Teclado Mecánico",
+        description: "Teclado Mecánico, 60%",
         price: 25000,
         stock: 25
     });
 
     await manager.addProduct({
         name: "Mouse",
-        description: "Mouse Gamer",
+        description: "Mouse Gamer Inalambrico",
         price: 15000,
         stock: 40
     });
