@@ -1,46 +1,45 @@
 class ProductManager {
     constructor() {
         this.products = [];
+        this.nextId = 1; // contador de IDs
     }
 
-    // Agregar producto
     addProduct(product) {
-        const { id, name, description, price, stock } = product;
+        const { name, description, price, stock } = product;
 
-        // Validar campos obligatorios
-        if (!id || !name || !description || !price || !stock) {
+
+        if (!name || !description || price === undefined || stock === undefined) {
             console.error("Todos los campos son obligatorios");
             return;
         }
 
-        // Validar ID 
-        const exists = this.products.find(p => p.id === id);
-        if (exists) {
-            console.error("El producto con ese ID ya existe");
-            return;
-        }
+        const newProduct = {
+            id: this.nextId, // se asigna automáticamente
+            name,
+            description,
+            price,
+            stock
+        };
 
-        this.products.push(product);
+        this.products.push(newProduct);
+
+        this.nextId++; // incrementa para el próximo
     }
 
-    
     getProducts() {
         return this.products;
     }
 
-    // Buscar por ID
     getProductById(id) {
         const product = this.products.find(p => p.id === id);
 
         if (!product) {
-            console.error("Not found");
-            return;
+            console.error("No encontrado");
+            return null;
         }
 
         return product;
     }
 }
-
-
 
 export default ProductManager;
