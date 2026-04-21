@@ -34,7 +34,7 @@ app.post('/api/users', (req,res) => {
         console.error(error);
     }
 
-    
+    //1hora 20 min clase http://localhost:3000/api/users
 })
 
 
