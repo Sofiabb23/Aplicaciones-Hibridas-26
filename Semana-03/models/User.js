@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 
+//clase usuarios
 class User {
     path = './data/users.json';
     list = []
