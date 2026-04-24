@@ -9,7 +9,7 @@ const userModel = new User();
 const app = express();
 app.use( express.json());
 app.get('/', (request, response) => {
-    response.send('<h1> API REST - Corregido  </h1>');
+    response.send('<h1> API REST - Semana 4  </h1>');
 })
 
 app.get('/api/users', async (req, res) => {
@@ -21,8 +21,25 @@ app.get('/api/users', async (req, res) => {
         res.status(500).json({ status: 'error', data: []});
         console.error(error);
     }
-
 })
+
+app.get('/api/users/id', async (req, res) => {
+    try {
+
+        const id = req.params.id
+        const user = await userModel.findById();
+        if( user){
+            res.json({ status: 'Ok', data: user});
+        } else {
+            res.status(404).json({ status: 'Not Found', data: user});
+        }
+        
+    } catch (error) {
+        res.status(500).json({ status: 'error', data: []});
+        console.error(error);
+    }
+})
+
 
 app.post('/api/users', async (req, res) => {
     try {

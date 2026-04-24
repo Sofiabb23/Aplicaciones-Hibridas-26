@@ -12,16 +12,19 @@ class User {
         const data = await fs.readFile(this.path)
         const json = JSON.parse(data);
         this.users = json;
+    }
 
+    async saveJson(){
+        const data = await JSON.stringify(this.list, null, 2);
+        await fs.writeFile(this.path, data)
     }
     
     async save(user){
         const id = crypto.randomUUID();
         user.id = id;
         this.list.push(user);
-        const data = JSON.stringify(this.list, null, 2);
-        await fs.writeFile(this.path, data);
-        console.log('Usuario Guardado');
+        await this.saveJson();
+        return id;
     }
 
     async find(){
@@ -36,12 +39,12 @@ class User {
     }
 
 
-    // async deleteById( id ){
-    //     await this.readJson();
-    // }
-    // async updateById( id, user){
+    async deleteById( id ){
+       await this.readJson();
+     }
+    async updateById( id, user){
 
-    // }
+    }
 
 }
 
